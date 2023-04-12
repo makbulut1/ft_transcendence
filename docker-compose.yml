@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  backend:
+    container_name: nest-app
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8000:3000"
+
+  frontend:
+    container_name: next-app
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:3000"
+
+  postgre:
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - "postgre_volume:/var/lib/postgresql"
+
+volumes:
+  postgre_volume:
+    driver: local
