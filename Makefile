@@ -1,7 +1,7 @@
 DOCKER = docker
-COMPOSE = $(DOCKER) compose -p inception -f app/docker-compose.yml
+COMPOSE = $(DOCKER) compose -p baklava-pong -f app/docker-compose.yml
 
-all: up
+all: detach
 
 ps:
 	$(COMPOSE) ps
@@ -25,6 +25,9 @@ restart:
 	$(COMPOSE) restart
 
 up:
+	$(COMPOSE) up
+
+detach :
 	$(COMPOSE) up --detach --build
 
 down:
