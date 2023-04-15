@@ -1,21 +1,26 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
+import { config } from 'dotenv';
+
 
 @Injectable()
 export class AppService {
   async getHello(query: any): Promise<string> {
-    const authData: any = await axios.post("https://api.intra.42.fr/oauth/token", {
-      grant_type: 'authorization_code',
+    config();
+    const authData: any = await axios.post(config().parsed.TokenURL, {
+      grant_type: config().parsed.GrantType,
       code : query.code,
-      client_id : "u-s4t2ud-c112189c2f1ede5884b8248a776c5305c4cf48c9fcb633c8f357c5eb6f70e779",
-      client_secret: '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',
-      redirect_uri : "http://64.226.97.1:8000/callback",
+      client_id : config().parsed.ClientID,
+      client_secret: config().parsed.SecretID,
+      redirect_uri : config().parsed.RedirectURL,
     });
-    const user = await axios.get('https://api.intra.42.fr/v2/me', {
+    const user = await axios.get(config().parsed.UserMeURL, {
       headers: {
         Authorization: `Bearer ${authData?.data?.access_token}`,
       },
     });
+    console.log(user.data.email);
     return 'Hello World!';
   }
 }

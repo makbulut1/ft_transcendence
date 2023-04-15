@@ -1,4 +1,4 @@
-DOCKER = docker
+DOCKER = sudo docker
 COMPOSE = $(DOCKER) compose -p baklava-pong -f app/docker-compose.yml
 
 all: detach
