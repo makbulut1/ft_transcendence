@@ -28,5 +28,5 @@ export const useModal = create<ModalState>(set => ({
   isOpen: false,
   content: null,
   openModal: content => set(() => ({ isOpen: true, content })),
-  closeModal: () => set(() => ({ content: null, isOpen: false})),
+  closeModal: () => set(() => ({ isOpen: false})),
 }))
