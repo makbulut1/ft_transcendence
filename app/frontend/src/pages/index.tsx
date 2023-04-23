@@ -1,6 +1,5 @@
-import { Button } from '@ui/Button'
-
 import { useModal } from '@/store/useModal'
+import { Button } from '@/ui/Button'
 
 
 export default function Home() {
@@ -11,7 +10,7 @@ export default function Home() {
     )}
 
   return (
-    <div className="flex h-screen w-full items-center justify-center ">
+    <div className="body flex h-screen w-full items-center justify-center ">
       <div className="flex gap-4 h-96 w-96 items-center justify-center ">
         <Button
           intent="primary"

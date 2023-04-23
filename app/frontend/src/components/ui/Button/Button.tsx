@@ -3,7 +3,8 @@ import React, { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const buttonStyles = cva(
-  'rounded-md px-3 py-2  text-xl shadow-md shadow-black/40 border-white border-2 transition-all duration-200 font-thin disabled:bg-neutral-600 disabled:shadow-none disabled:hover:text-neutral-100',
+  'rounded-md px-3 py-2  text-xl shadow-md shadow-black/40 border-white border-[1.5px] transition-all duration-200 font-thin' +
+    ' disabled:bg-neutral-600 disabled:shadow-none disabled:hover:text-neutral-100',
   {
     variants: {
       intent: {
@@ -29,7 +30,15 @@ export interface IButton extends React.ComponentPropsWithoutRef<'button'>, Varia
 
 const Button = ({ children, intent, fullWidth, ...rest }: IButton) => {
   return (
-    <button {...rest} className={twMerge(buttonStyles({ intent, fullWidth }))}>
+    <button
+      {...rest}
+      className={twMerge(
+        buttonStyles({
+          intent,
+          fullWidth,
+        })
+      )}
+    >
       {children}
     </button>
   )

@@ -12,7 +12,6 @@ type ModalPortalProps = {
 const ModalPortal = ({ children }: ModalPortalProps) => {
   const [modalRoot, setModalRoot] = useState<HTMLElement | null>(null)
 
-  console.log('modalRoot', modalRoot)
   useEffect(() => {
     const root = document.getElementById('modal-root')
     setModalRoot(root)
@@ -28,7 +27,6 @@ const ModalPortal = ({ children }: ModalPortalProps) => {
 const ModalController = () => {
   const { isOpen, content, closeModal } = useModal()
 
-  console.log('isOpen', isOpen)
   return (
     <ModalPortal>
       <Modal show={isOpen} onClose={closeModal}>
