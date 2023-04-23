@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 
 const buttonStyles = cva(
   'rounded-md px-3 py-2  text-xl shadow-md shadow-black/40 border-white border-[1.5px] transition-all duration-200 font-thin' +
-    ' disabled:bg-neutral-600 disabled:shadow-none disabled:hover:text-neutral-100',
+    ' disabled:bg-neutral-600 disabled:shadow-none disabled:hover:text-neutral-100 active:brightness-90 active:shadow-none',
   {
     variants: {
       intent: {
@@ -16,7 +16,7 @@ const buttonStyles = cva(
         true: 'w-full',
       },
       defaultVariants: {
-        intent: 'secondary',
+        intent: 'primary',
       },
     },
   }

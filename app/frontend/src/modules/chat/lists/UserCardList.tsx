@@ -1,3 +1,4 @@
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { useEffect, useState } from 'react'
 
 import UserCard from '@/modules/chat/modules/UserCard'
@@ -10,6 +11,7 @@ interface UserCardListProps {
 const UserCardList = ({ search }: UserCardListProps) => {
   const [selectedCard, setSelectedCard] = useState<number | null>(null)
   const [userList, setUserList] = useState<IUser[]>([])
+  const [parent, enableAnimations] = useAutoAnimate(/* optional config */)
 
   const onCardClick = (index: number) => {
     setSelectedCard(index)
@@ -30,13 +32,13 @@ const UserCardList = ({ search }: UserCardListProps) => {
   }, [search])
 
   return (
-    <div className="flex flex-col items-center">
+    <ul ref={parent} className="flex flex-col items-center">
       {userList.map((item, index) => (
-        <div key={index} onClick={() => onCardClick(index)}>
+        <li key={index} onClick={() => onCardClick(index)}>
           <UserCard data={item} selected={selectedCard === index} />
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }
 

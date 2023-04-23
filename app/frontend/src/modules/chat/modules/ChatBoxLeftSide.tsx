@@ -26,7 +26,7 @@ const ChatBoxLeftSide = () => {
 
   return (
     <div className="flex flex-col gap-4 rounded-md bg-[#151618] p-2">
-      <h1 className="text-gray-300 py-3 px-2 text-xl">Messages</h1>
+      <h1 className="p-2 font-extrabold text-transparent text-4xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Message</h1>
       <SearchUser setSearch={setSearch} />
       <UserCardList search={search} />
     </div>

@@ -1,3 +1,4 @@
+import { Header } from '@/layouts'
 import ChatBoxLeftSide from '@/modules/chat/modules/ChatBoxLeftSide'
 import UserCard from '@/modules/chat/modules/UserCard'
 import { Button } from '@/ui/Button'
@@ -22,6 +23,9 @@ const Page = () => {
   return (
     <div className="w-full h-full bg-neutral-200 flex flex-col items-center p-10 gap-10">
       <h1 className="font-black text-xl">Components</h1>
+      <div className="w-full">
+        <Header />
+      </div>
       <div className="flex gap-4">
         <Button>Primary</Button>
         <Button intent="secondary">Secondary</Button>

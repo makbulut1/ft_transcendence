@@ -32,7 +32,7 @@ const Dropdown = ({ children, button, x, y }: SettingButtonDropDownProps) => {
           leaveFrom="opacity-100 translate-y-1"
           leaveTo="opacity-0 translate-y-0"
         >
-          <Popover.Panel className={`absolute z-30 ${x === 'left' ? 'right-1' : 'left-1'} ${y === 'up' ? 'bottom-8' : 'top-8'}`}>
+          <Popover.Panel className={`absolute z-30 ${x === 'left' ? 'right-1' : 'left-1'} ${y === 'up' ? 'bottom-15' : 'top-15'}`}>
             {children}
           </Popover.Panel>
         </Transition>
