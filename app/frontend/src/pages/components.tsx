@@ -1,6 +1,6 @@
 import { Header } from '@/layouts'
-import ChatBoxLeftSide from '@/modules/chat/modules/ChatBoxLeftSide'
-import UserCard from '@/modules/chat/modules/UserCard'
+import { UserListItem } from '@/modules/chat/modules'
+import { UserCard } from '@/modules/chat/modules/components'
 import { Button } from '@/ui/Button'
 
 const Page = () => {
@@ -35,7 +35,7 @@ const Page = () => {
         <UserCard/>
       </div>
       <div className="w-[30rem]">
-        <ChatBoxLeftSide/>
+        <UserListItem/>
       </div>
     </div>
   )

@@ -1,7 +1,8 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { ChangeEvent, useCallback, useState } from 'react'
 
-import UserCardList from '@/modules/chat/lists/UserCardList'
+import { UserList } from '@/modules/chat/lists'
+
 
 interface SearchUserProps {
   setSearch: (value: string) => void
@@ -19,18 +20,25 @@ const SearchUser = ({ setSearch }: SearchUserProps) => {
   </div>
 }
 
-const ChatBoxLeftSide = () => {
+const UserListItemHeader = () => (
+  <h1
+    className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text p-2 text-4xl font-extrabold text-transparent">
+    Message
+  </h1>
+)
+
+const UserListItem = () => {
   const [search, setSearch] = useState<string>('')
 
   console.log(search)
 
   return (
     <div className="flex flex-col gap-4 rounded-md bg-[#151618] p-2">
-      <h1 className="p-2 font-extrabold text-transparent text-4xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Message</h1>
+      <UserListItemHeader />
       <SearchUser setSearch={setSearch} />
-      <UserCardList search={search} />
+      <UserList search={search} />
     </div>
   )
 }
 
-export default ChatBoxLeftSide
+export { UserListItem }

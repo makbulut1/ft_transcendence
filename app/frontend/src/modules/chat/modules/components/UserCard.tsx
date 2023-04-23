@@ -70,4 +70,4 @@ const UserCard = ({ selected, data }: IUserCard) => {
   )
 }
 
-export default UserCard
+export { UserCard }
