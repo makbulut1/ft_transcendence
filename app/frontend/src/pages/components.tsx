@@ -1,10 +1,9 @@
 import { Header } from '@/layouts'
 import { UserListItem } from '@/modules/chat/modules'
-import { UserCard } from '@/modules/chat/modules/components'
+import { MessageCard, UserCard } from '@/modules/chat/modules/components'
 import { Button } from '@/ui/Button'
 
 const Page = () => {
-
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const response = await fetch('api/users', {
@@ -21,8 +20,22 @@ const Page = () => {
   // })
 
   return (
-    <div className="w-full h-full bg-neutral-200 flex flex-col items-center p-10 gap-10">
-      <h1 className="font-black text-xl">Components</h1>
+    <div className="flex h-full w-full flex-col items-center gap-10 bg-neutral-200 p-10">
+      <h1 className="text-xl font-black">Components</h1>
+      <div className="flex w-[50rem] flex-col gap-4 bg-baklavaBlack-1 p-4 rounded-md">
+        <MessageCard first={true} justify="end">
+          Hello this is first message for user
+        </MessageCard>
+        <MessageCard first={false} justify="end">
+          Hello this is second message for user
+        </MessageCard>
+        <MessageCard first={true} justify="start">
+          Hello this is first message for guest
+        </MessageCard>
+        <MessageCard first={false} justify="start">
+          Hello this is second message for guest
+        </MessageCard>
+      </div>
       <div className="w-full">
         <Header />
       </div>
@@ -32,11 +45,12 @@ const Page = () => {
         <Button intent="danger">Danger</Button>
       </div>
       <div className="w-[30rem]">
-        <UserCard/>
+        <UserCard />
       </div>
       <div className="w-[30rem]">
-        <UserListItem/>
+        <UserListItem />
       </div>
+
     </div>
   )
 }

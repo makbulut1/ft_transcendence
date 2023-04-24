@@ -30,7 +30,7 @@ interface NameAndLastMessageProps {
 
 const NameAndLastMessage = ({ name }: NameAndLastMessageProps) => (
   <div className="flex w-5/6 flex-col">
-    <span>{name ?? `Eren Akbulut`} </span>
+    <span className="font-bold">{name ?? `Eren Akbulut`} </span>
     <span className="truncate text-gray-500">Last Message Last Message Last Message </span>
   </div>
 )
