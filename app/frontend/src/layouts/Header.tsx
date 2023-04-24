@@ -12,8 +12,8 @@ const ProfileDropdownButton = () => (
 function HeaderProfileDropdownContent() {
   return (
     <div
-      className="flex flex-col rounded-md bg-baklavaBlack-1 p-2 shadow-xl
-        c:cursor-pointer c:bg-baklavaBlack-1 c:text-xl c:font-thin c-h:bg-baklavaBlack-2 c-a:brightness-150 c:p-2 c:duration-200"
+      className="flex flex-col rounded-md bg-baklavaBlack-200 p-2 shadow-xl
+        c:cursor-pointer c:bg-baklavaBlack-200 c:text-xl c:font-thin c-h:bg-baklavaBlack-100 c-a:brightness-150 c:p-2 c:duration-200"
     >
       <div>Sec-1</div>
       <div>Sec-2</div>

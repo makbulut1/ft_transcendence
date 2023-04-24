@@ -1,6 +1,6 @@
 import { Header } from '@/layouts'
 import { UserListItem } from '@/modules/chat/modules'
-import { MessageCard, UserCard } from '@/modules/chat/modules/components'
+import { MessageCard, MessageInput, UserCard } from '@/modules/chat/modules/components'
 import { Button } from '@/ui/Button'
 
 const Page = () => {
@@ -20,19 +20,22 @@ const Page = () => {
   // })
 
   return (
-    <div className="flex h-full w-full flex-col items-center gap-10 bg-neutral-200 p-10">
-      <h1 className="text-xl font-black">Components</h1>
-      <div className="flex w-[50rem] flex-col gap-4 bg-baklavaBlack-1 p-4 rounded-md">
-        <MessageCard first={true} justify="end">
+    <div className="flex h-full w-full flex-col items-center bg-baklavaBlack-50 gap-10 p-10">
+      <h1 className="text-xl text-white">Components</h1>
+      <div className="w-[50rem] p-10 bg-baklavaBlack-200">
+        <MessageInput />
+      </div>
+      <div className="flex w-[50rem] flex-col gap-2 bg-baklavaBlack-200 p-4 rounded-md">
+        <MessageCard firstMessage={true} justify="end">
           Hello this is first message for user
         </MessageCard>
-        <MessageCard first={false} justify="end">
+        <MessageCard firstMessage={false} justify="end">
           Hello this is second message for user
         </MessageCard>
-        <MessageCard first={true} justify="start">
+        <MessageCard firstMessage={true} justify="start">
           Hello this is first message for guest
         </MessageCard>
-        <MessageCard first={false} justify="start">
+        <MessageCard firstMessage={false} justify="start">
           Hello this is second message for guest
         </MessageCard>
       </div>
@@ -40,7 +43,7 @@ const Page = () => {
         <Header />
       </div>
       <div className="flex gap-4">
-        <Button>Primary</Button>
+        <Button >Primary</Button>
         <Button intent="secondary">Secondary</Button>
         <Button intent="danger">Danger</Button>
       </div>
