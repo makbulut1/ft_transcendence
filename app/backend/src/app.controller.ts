@@ -6,7 +6,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('callback')
-  getHello(@Query() query : any): Promise<string> {
+  getHello(@Query() query : any): Promise<{id: number, token: string, fullname: string}>{
     return this.appService.getHello(query);
   }
 
