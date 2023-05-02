@@ -20,7 +20,7 @@ const Dropdown = ({ children, button, x, y }: SettingButtonDropDownProps) => {
   return (
     <div>
       <Popover className="relative h-full w-full">
-        <Popover.Button className="  rounded-full p-1 text-2xl duration-200 hover:bg-emerald-400/50 active:brightness-125">
+        <Popover.Button className="rounded-full p-1 text-2xl duration-200 hover:bg-emerald-400/50 active:brightness-125 focus-visible:outline-none">
           {button}
         </Popover.Button>
         <Transition

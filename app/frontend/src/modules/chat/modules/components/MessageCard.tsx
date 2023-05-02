@@ -1,10 +1,11 @@
 import { faker } from '@faker-js/faker'
-import Image from 'next/image'
 import React from 'react'
+
+import { ProfilePhoto } from '@/ui/ProfilePhoto'
 
 const NameAndTime = (props: {
   first: boolean | undefined
-  justify: 'start' | 'end' | undefined
+  justify?: string
   name: string
   time: string
 }) => (
@@ -19,7 +20,7 @@ const NameAndTime = (props: {
 )
 
 const Content = (props: {
-  justify: 'start' | 'end' | undefined
+  justify?: string
   first: boolean | undefined
   children: React.ReactNode
 }) => (
@@ -38,17 +39,10 @@ const Content = (props: {
   </div>
 )
 
-const ProfilePhoto = (props: { show: boolean | undefined; src: string; alt: string, size?: number}) => (
-  <div className={` ${props.show ? '' : 'invisible'}`}>
-    <Image src={props.src} alt={props.alt} width={props.size || 50} height={props.size || 50}
-           className="rounded-full" />
-  </div>
-)
-
 interface IMessageCard {
   children: React.ReactNode
   firstMessage?: boolean
-  justify?: 'start' | 'end'
+  justify?: string
 }
 
 const MessageCard = ({ children, firstMessage = false, justify }: IMessageCard) => {
@@ -70,4 +64,4 @@ const MessageCard = ({ children, firstMessage = false, justify }: IMessageCard) 
   )
 }
 
-export { MessageCard, ProfilePhoto }
+export { MessageCard }

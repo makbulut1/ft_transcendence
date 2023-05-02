@@ -1,34 +1,28 @@
-// import axios, { AxiosError, AxiosRequestConfig } from 'axios'
-//
-// // Define an Axios instance with default configuration
-// const instance = axios.create({
-//   baseURL: 'https://api.example.com',
-//   timeout: 5000,
-// })
-//
-// // Add a request interceptor to modify the request config
-// instance.interceptors.request.use(
-//   (config: AxiosRequestConfig) => {
-//     // Add custom headers or modify the request config as needed
-//     config.headers['Authorization'] = `Bearer ${localStorage.getItem('accessToken')}`
-//     return config
-//   },
-//   (error: AxiosError) => {
-//     // Handle request errors here
-//     return Promise.reject(error)
-//   }
-// )
-//
-// // Add a response interceptor to handle the response data
-// instance.interceptors.response.use(
-//   (response) => {
-//     // Handle successful responses here
-//     return response
-//   },
-//   (error: AxiosError) => {
-//     // Handle response errors here
-//     return Promise.reject(error)
-//   }
-// )
-//
-// export default instance
+import axios from 'axios'
+
+const TIMEOUT = 1 * 60 * 1000
+axios.defaults.timeout = TIMEOUT
+// axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL
+axios.defaults.baseURL = "http://64.226.97.1:3000/"
+
+const setupAxiosInterceptors = (onUnauthenticated: any) => {
+  const onRequestSuccess = (config: any) => {
+    console.log('config', config)
+    // let token = localStorage.getItem('access_token')
+    // const persist = localStorage.getItem('persist:auth')
+    // config.headers.Authorization = `Bearer ${token}`
+    return config
+  }
+  const onResponseSuccess = (response: any) => response
+  const onResponseError = (err: any) => {
+    const status = err.status || (err.response ? err.response.status : 0)
+    if (status === 403 || status === 401) {
+      // onUnauthenticated()
+    }
+    return Promise.reject(err)
+  }
+  axios.interceptors.request.use(onRequestSuccess)
+  axios.interceptors.response.use(onResponseSuccess, onResponseError)
+}
+
+export default setupAxiosInterceptors

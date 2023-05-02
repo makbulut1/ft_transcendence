@@ -16,7 +16,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const jsonWriteData = JSON.stringify(req.body);
     const writeData = await fsPromises.writeFile(dataFilePath, jsonWriteData);
     console.log(writeData);
-
     res.status(200).json({ message: 'Success' });
   }
 }

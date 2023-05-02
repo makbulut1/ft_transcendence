@@ -19,6 +19,9 @@ module.exports = {
           200: '#151618',
         },
       },
+      boxShadow: {
+        '3xl': '0 40px 60px 8px rgba(0, 0, 0, 0.9)',
+      },
     },
   },
   plugins: [

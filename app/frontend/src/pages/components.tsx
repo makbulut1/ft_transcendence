@@ -1,6 +1,8 @@
+import Cookies from 'js-cookie'
+
 import { Header } from '@/layouts'
-import { UserListItem } from '@/modules/chat/modules'
-import { MessageCard, MessageInput, UserCard } from '@/modules/chat/modules/components'
+import { ChatWindow, UserListItem } from '@/modules/chat/modules'
+import { ChatWindowFooter, ChatWindowHeader, MessageCard, UserCard } from '@/modules/chat/modules/components'
 import { Button } from '@/ui/Button'
 
 const Page = () => {
@@ -19,11 +21,16 @@ const Page = () => {
   //   fetchData().then(r => console.log(r))
   // })
 
+  const sessionToken = Cookies.get('sessionToken');
+  console.log(sessionToken)
+
   return (
     <div className="flex h-full w-full flex-col items-center bg-baklavaBlack-50 gap-10 p-10">
       <h1 className="text-xl text-white">Components</h1>
+      <div className="w-[50rem]"><ChatWindow /></div>
+      <div className="w-[50rem]"><ChatWindowHeader/></div>
       <div className="w-[50rem] p-10 bg-baklavaBlack-200">
-        <MessageInput />
+        <ChatWindowFooter />
       </div>
       <div className="flex w-[50rem] flex-col gap-2 bg-baklavaBlack-200 p-4 rounded-md">
         <MessageCard firstMessage={true} justify="end">

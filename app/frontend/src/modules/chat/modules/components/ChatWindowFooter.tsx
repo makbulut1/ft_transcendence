@@ -2,20 +2,19 @@ import { faker } from '@faker-js/faker'
 import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { ProfilePhoto } from '@/modules/chat/modules/components/MessageCard'
+import { ProfilePhoto } from '@/ui/ProfilePhoto'
 
 interface Inputs {
   message: string
 }
 
-const MessageInput = () => {
+const ChatWindowFooter = () => {
   const {
     register,
     handleSubmit,
   } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = data => console.log(data)
 
-  console.log(`qweqe`)
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="relative flex w-full ">
@@ -34,4 +33,4 @@ const MessageInput = () => {
   )
 }
 
-export { MessageInput }
+export { ChatWindowFooter }

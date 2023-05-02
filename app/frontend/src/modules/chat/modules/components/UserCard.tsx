@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 import { IUser } from '@/types'
+import { ProfilePhoto } from '@/ui/ProfilePhoto'
 
 interface PhotoComponentProps {
   avatar: string | undefined
@@ -18,7 +19,7 @@ const PhotoComponent = ({ avatar }: PhotoComponentProps) => {
   const colors = ['bg-red-500', 'bg-blue-100/90', 'bg-[#6DCC96]']
   return (
     <div className="min-w-fit relative">
-      <Image className="rounded-full" src={avatar ?? faker.image.avatar()} alt={`avatar`} width={60} height={60} />
+      <ProfilePhoto show={true} src={avatar || ""} alt={faker.name.fullName()} size={60} />
       <div className={`absolute bottom-0 right-0 w-5 h-5 ${colors[randomNumber]} rounded-full border-[4px] border-[#151618]`} />
     </div>
   )

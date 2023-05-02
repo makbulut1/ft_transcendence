@@ -2,10 +2,11 @@ import { faker } from '@faker-js/faker'
 import Image from 'next/image'
 
 import { Dropdown } from '@/components/Dropdown'
+import { ProfilePhoto } from '@/ui/ProfilePhoto'
 
 const ProfileDropdownButton = () => (
-  <div className="cursor-pointer rounded-full bg-neutral-300 p-0.5 shadow-xl duration-200 hover:brightness-110 active:shadow-none active:brightness-90">
-    <Image src={faker.image.avatar()} alt={faker.name.firstName()} width={50} height={50} className="rounded-full" />
+  <div className="cursor-pointer rounded-full bg-neutral-300 p-0.5 shadow-xl duration-200 hover:brightness-110 focus:outline-none active:shadow-none active:brightness-150">
+    <ProfilePhoto show={true} src={faker.image.avatar()} alt={faker.name.firstName()} size={50} />
   </div>
 )
 
