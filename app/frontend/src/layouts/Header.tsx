@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
-import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 import { Dropdown } from '@/components/Dropdown'
 import { ProfilePhoto } from '@/ui/ProfilePhoto'
@@ -11,6 +12,12 @@ const ProfileDropdownButton = () => (
 )
 
 function HeaderProfileDropdownContent() {
+  const router = useRouter()
+  function handleLogout() {
+    localStorage.removeItem('user')
+    router.push('/')
+  }
+
   return (
     <div
       className="flex flex-col rounded-md bg-baklavaBlack-200 p-2 shadow-xl
@@ -19,7 +26,7 @@ function HeaderProfileDropdownContent() {
       <div>Sec-1</div>
       <div>Sec-2</div>
       <div>Sec-3</div>
-      <div>Sec-4</div>
+      <div onClick={handleLogout} >Logout</div>
     </div>
   )
 }
@@ -37,12 +44,19 @@ const HeaderProfileDropdown = () => {
 const HeaderProfile = () => <HeaderProfileDropdown />
 
 const Header = () => {
+  const [user, setUser] = useState<string | null>(null)
+
+  useEffect(() => {
+    const user = localStorage.getItem('user')
+    if (user) {
+      setUser(user)
+    }
+  }, [])
+
   return (
     <header className="relative flex  h-20 w-full items-center justify-center bg-gradient-to-r from-[#ad5389] to-[#3c1053] p-2 px-4 text-4xl font-extrabold text-white shadow-xl">
       <h1 className="absolute">Header</h1>
-      <div className="flex w-full justify-end">
-        <HeaderProfile />
-      </div>
+      <div className="flex w-full justify-end">{user && <HeaderProfile />}</div>
     </header>
   )
 }
