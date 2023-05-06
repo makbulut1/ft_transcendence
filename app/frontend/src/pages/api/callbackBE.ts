@@ -10,8 +10,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log(req.body)
     const authData: any = await axios.post('https://api.intra.42.fr/oauth/token', {
       grant_type: 'authorization_code',
-      client_id: 'u-s4t2ud-240411a646735096c38638f3719456168613f906bbd4a1a94fa2a949cf943638',
-      client_secret: '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',
+      client_id: process.env.CLIENT_ID,
+      client_secret: process.env.CLIENT_SECRET,
       code: req.body.code,
       redirect_uri: 'http://localhost:3000/callback',
     })

@@ -33,7 +33,7 @@ const UserListItem = () => {
   console.log(search)
 
   return (
-    <div className="flex flex-col gap-4 rounded-md bg-[#151618] p-2">
+    <div className="flex flex-col h-full overflow-y-scroll gap-4 rounded-md bg-[#151618] p-2">
       <UserListItemHeader />
       <SearchUser setSearch={setSearch} />
       <UserList search={search} />

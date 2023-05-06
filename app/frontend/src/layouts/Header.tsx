@@ -4,11 +4,11 @@ import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useState } from 'react'
 
 import { Dropdown } from '@/components/Dropdown'
+import { MenuButtons } from '@/constants'
 import { useStoreUser } from '@/store'
+import { MenuButtonProps } from '@/types'
 import { Button } from '@/ui/Button'
 import { ProfilePhoto } from '@/ui/ProfilePhoto'
-import { MenuButtonProps } from '@/types'
-import { MenuButtons } from '@/constants'
 
 const ProfileDropdownButton = () => (
   <div className="cursor-pointer rounded-full bg-neutral-300 p-0.5 shadow-xl duration-200 hover:brightness-110 focus:outline-none active:shadow-none active:brightness-150">
@@ -21,7 +21,7 @@ function HeaderProfileDropdownContent() {
   const { unauthenticate } = useStoreUser()
   function handleLogout() {
     unauthenticate()
-    router.push('/')
+    router.push('/').then(() => window.location.reload())
   }
 
   return (

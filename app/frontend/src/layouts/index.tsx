@@ -8,7 +8,7 @@ const Layout = ({children} : {children : React.ReactNode | React.ReactNode[]}) =
   return (
     <div className="w-full h-screen bg-baklavaBlack-300">
       <Header />
-      <main className="w-full h-full">{children}</main>
+      <main className="w-full">{children}</main>
       </div>
   )
 }

@@ -27,15 +27,17 @@ const ChatBox = () => {
     const reversedItems = [...chatMessages];
     setChatMessagesState(reversedItems.reverse())
   }
-
   console.log(chatMessagesState)
 
 
+  //Variables
+  const fullname = "Eren Akbulut"
+
   return (
-    <div className="flex bg-baklavaBlack-200 h-fit">
+    <div className="flex bg-baklavaBlack-200 h-fit max-h-[60vh]">
       <div className=" w-[25rem]"><UserListItem/> </div>
-      <div className="w-[50rem] border-l-[0.1rem] border-gray-600">
-        <ChatWindowHeader/>
+      <div className="w-[50rem] border-l-[0.1rem] border-gray-600 h-full ">
+        <ChatWindowHeader fullname={fullname}/>
         <MessageList messages={chatMessagesState} />
         <div className="pb-2 px-2"><ChatWindowFooter sendMessage={handleSendMessage} /></div>
       </div>
