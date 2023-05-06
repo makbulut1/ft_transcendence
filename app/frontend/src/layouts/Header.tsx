@@ -56,7 +56,7 @@ function MenuButton({ children, path }: {children: React.ReactNode | React.React
   return (
     <Button
       onClick={() => router.push(path)}
-      className="flex items-center justify-center gap-1 rounded-se-3xl rounded-bl-3xl   bg-baklavaBlack-200 p-2 px-6 text-xl font-bold hover:brightness-125">
+      className="flex items-center justify-center gap-1 rounded-se-3xl rounded-bl-3xl bg-transparent p-2 px-6 text-xl font-bold hover:brightness-125">
       {children}
     </Button>
   )

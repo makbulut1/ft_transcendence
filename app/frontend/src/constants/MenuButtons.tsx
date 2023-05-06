@@ -3,8 +3,6 @@ import React from 'react'
 
 import { MenuButtonProps } from '@/types'
 
-
-
 const MenuButtons: MenuButtonProps[] = [
   {
     name: 'Home',
