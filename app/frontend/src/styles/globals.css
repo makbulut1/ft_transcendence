@@ -16,6 +16,14 @@
   }
 }
 
+
+@layer base {
+  html, body {
+    @apply h-full bg-baklavaBlack-300
+  }
+}
+
+
 .body {
   background: linear-gradient(to bottom right, #ff6b6b, #ffe66d, #6bffb8, #6d8aff, #e16dff);
   background-size: 400% 400%;

@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { useEffect } from 'react'
 
 import { ChatMessage, chatMessages } from '@/_Mock/chat/dummyChat'
@@ -20,19 +21,20 @@ import { MessageCard } from '@/modules/chat/modules/components'
 const diffDate = (date1: Date, date2: Date) => {
   return date1.getTime() - date2.getTime()
 }
+interface MessageListProps {
+  messages: ChatMessage[],
+}
 
-const reverseArray = chatMessages.reverse()
 /**
  * Data zaten reverse olarak gelecek o yuzden bu tarz islemlere gerek yok
  * TODO: reverseArray'i sil
  * @constructor
  */
 
+const MessageList = ({ messages }: MessageListProps) => {
+  const [parent, enableAnimations] = useAutoAnimate(/* optional config */)
 
-const MessageList = () => {
-
-  useEffect(() => {
-  }, [])
+  useEffect(() => {}, [])
 
   const userMe = {
     id: 1,
@@ -48,15 +50,25 @@ const MessageList = () => {
   }
 
   return (
-    <div className="flex max-h-[50vh] min-h-[50vh] w-full flex-col-reverse gap-2 overflow-y-scroll rounded-md bg-baklavaBlack-200 px-6 py-2 pt-14">
-      {reverseArray && reverseArray.length > 0 && reverseArray.map((item: ChatMessage, index, array) => (
-        <MessageCard key={item.id}
-                      firstMessage={index === array.length - 1 || index < array.length - 1 && array[index + 1].senderId !== item.senderId}
-                      position={item.senderId === userMe.id ? 'end' : 'start'}
-        >
-          {item.message}
-        </MessageCard>))}
-    </div>
+    <ul
+      ref={parent}
+      className="flex max-h-[50vh] min-h-[50vh] w-full flex-col-reverse gap-2 overflow-y-scroll rounded-md bg-baklavaBlack-200 px-6 py-2 pt-14"
+    >
+      {messages &&
+        messages.length > 0 &&
+        messages.map((item: ChatMessage, index, array) => (
+          <li key={item.id}>
+            <MessageCard
+              firstMessage={
+                index === array.length - 1 || (index < array.length - 1 && array[index + 1].senderId !== item.senderId)
+              }
+              position={item.senderId === userMe.id ? 'end' : 'start'}
+            >
+              {item.message}
+            </MessageCard>
+          </li>
+        ))}
+    </ul>
   )
 }
 

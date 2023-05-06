@@ -8,16 +8,24 @@ interface Inputs {
   message: string
 }
 
-const ChatWindowFooter = () => {
+interface ChatWindowFooterProps {
+  sendMessage: (message: string) => void,
+}
+
+const ChatWindowFooter = ({ sendMessage }: ChatWindowFooterProps) => {
   const {
     register,
     handleSubmit,
+    reset
   } = useForm<Inputs>()
-  const onSubmit: SubmitHandler<Inputs> = data => console.log(data)
+  const onSubmit: SubmitHandler<Inputs> = data => {
+    sendMessage(data.message)
+    reset()
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="relative flex w-full ">
+      <div className="relative flex w-full">
         <input
           type="textarea"
           placeholder={'Type your message...'}

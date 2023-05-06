@@ -1,5 +1,5 @@
 import { cva, VariantProps } from 'class-variance-authority'
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const buttonStyles = cva(
@@ -8,9 +8,9 @@ const buttonStyles = cva(
   {
     variants: {
       intent: {
-        primary: 'bg-white text-black hover:brightness-150',
         secondary: 'bg-black text-white hover:brightness-150',
         danger: 'bg-red-600 text-white hover:brightness-110',
+        primary: 'bg-blue-600 text-white hover:brightness-110',
       },
       fullWidth: {
         true: 'w-full',
@@ -23,12 +23,13 @@ const buttonStyles = cva(
 )
 
 export interface IButton extends React.ComponentPropsWithoutRef<'button'>, VariantProps<typeof buttonStyles> {
-  children: ReactElement | string
+  children: React.ReactNode | React.ReactNode[]
   intent?: 'primary' | 'secondary' | 'danger'
   fullWidth?: boolean
+  className?: string
 }
 
-const Button = ({ children, intent, fullWidth, ...rest }: IButton) => {
+const Button = ({ children, intent, fullWidth, className, ...rest }: IButton) => {
   return (
     <button
       {...rest}
@@ -36,6 +37,7 @@ const Button = ({ children, intent, fullWidth, ...rest }: IButton) => {
         buttonStyles({
           intent,
           fullWidth,
+          className,
         })
       )}
     >

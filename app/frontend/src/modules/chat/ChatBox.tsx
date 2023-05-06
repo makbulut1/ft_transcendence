@@ -1,8 +1,44 @@
+import { useEffect, useState } from 'react'
+
+import { ChatMessage, chatMessages } from '@/_Mock/chat/dummyChat'
+import { MessageList } from '@/modules/chat/lists'
+import { UserListItem } from '@/modules/chat/modules'
+import { ChatWindowFooter, ChatWindowHeader } from '@/modules/chat/modules/components'
+
 const ChatBox = () => {
+  const [chatMessagesState, setChatMessagesState] = useState<ChatMessage[]>([])
+
+  useEffect(() => {
+    if (chatMessagesState.length > 0) return
+    const reversedItems = [...chatMessages];
+    setChatMessagesState(reversedItems.reverse())
+  }, [])
+
+  const handleSendMessage = (message: string) => {
+    chatMessages.push({
+      id: chatMessages.length + 1,
+      senderId: 1,
+      receiverId: 2,
+      message: message,
+      timestamp: new Date(),
+      isRead: false,
+      isDeleted: false,
+    })
+    const reversedItems = [...chatMessages];
+    setChatMessagesState(reversedItems.reverse())
+  }
+
+  console.log(chatMessagesState)
+
 
   return (
-    <div >
-      <h1>ChatBox</h1>
+    <div className="flex bg-baklavaBlack-200 h-fit">
+      <div className=" w-[25rem]"><UserListItem/> </div>
+      <div className="w-[50rem] border-l-[0.1rem] border-gray-600">
+        <ChatWindowHeader/>
+        <MessageList messages={chatMessagesState} />
+        <div className="pb-2 px-2"><ChatWindowFooter sendMessage={handleSendMessage} /></div>
+      </div>
     </div>
   )
 }
