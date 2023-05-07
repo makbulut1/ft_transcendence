@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1cc5c081-2bc0-4800-af6a-a2585f2f400e",
+    "name": "Laurence Christiansen",
+    "email": "Melyna83@hotmail.com",
+    "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/91.jpg",
+    "created_at": "2022-07-02T20:04:00.265Z",
+    "updated_at": null,
+    "deleted_at": null,
+    "isDeleted": false
+  },
+  {
+    "id": "02b0b529-981e-4e03-a0d2-ea6b221c6f4d",
+    "name": "Miss Lana Berge",
+    "email": "Lela.Collins@gmail.com",
+    "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/558.jpg",
+    "created_at": "2022-08-19T03:49:28.378Z",
+    "updated_at": null,
+    "deleted_at": null,
+    "isDeleted": false
+  },
+  {
+    "id": "df53da0f-1b93-48e8-a6d3-c5a2a0313e77",
+    "name": "Kelvin Klocko Jr.",
+    "email": "Horacio2@yahoo.com",
+    "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/560.jpg",
+    "created_at": "2022-05-04T00:51:57.107Z",
+    "updated_at": null,
+    "deleted_at": null,
+    "isDeleted": false
+  },
+  {
+    "id": "d34a30bf-e573-4426-9898-9c8c73aa3131",
+    "name": "Robert Padberg",
+    "email": "Makenzie_Murazik@gmail.com",
+    "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/788.jpg",
+    "created_at": "2022-09-29T03:23:05.424Z",
+    "updated_at": null,
+    "deleted_at": null,
+    "isDeleted": false
+  },
+  {
+    "id": "08c665c4-287d-46e2-ac78-039c6559482e",
+    "name": "Paulette Walsh",
+    "email": "Emelia_Jerde38@yahoo.com",
+    "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/418.jpg",
+    "created_at": "2022-06-05T12:55:48.692Z",
+    "updated_at": null,
+    "deleted_at": null,
+    "isDeleted": false
+  }
+]
