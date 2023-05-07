@@ -34,10 +34,10 @@ const ChatBox = () => {
   const fullname = "Eren Akbulut"
 
   return (
-    <div className="flex bg-baklavaBlack-200 h-fit max-h-[60vh]">
+    <div className="flex bg-baklavaBlack-200 h-fit max-h-[60vh] shadow-baklavaBlack-200 shadow-2xl rounded-xl">
       <div className=" w-[25rem]"><UserListItem/> </div>
-      <div className="w-[50rem] border-l-[0.1rem] border-gray-600 h-full ">
-        <ChatWindowHeader fullname={fullname}/>
+      <div className="w-[75rem] border-l-[0.1rem] border-gray-600 h-full ">
+        <ChatWindowHeader fullname={fullname} />
         <MessageList messages={chatMessagesState} />
         <div className="pb-2 px-2"><ChatWindowFooter sendMessage={handleSendMessage} /></div>
       </div>
