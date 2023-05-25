@@ -27,16 +27,20 @@ const UserListItemHeader = () => (
   </h1>
 )
 
-const UserListItem = () => {
+interface UserListItemProps {
+  setUserListItemDisplay: (value: (((prevState: (boolean | null)) => (boolean | null)) | boolean | null)) => void
+}
+
+const UserListItem = ({setUserListItemDisplay}: UserListItemProps) => {
   const [search, setSearch] = useState<string>('')
 
-  console.log(search)
 
   return (
-    <div className="flex flex-col h-full overflow-y-scroll gap-4 rounded-md bg-[#151618] p-2">
+    <div className="relative flex flex-col h-full overflow-y-scroll gap-4 rounded-md bg-[#151618] p-2">
       <UserListItemHeader />
       <SearchUser setSearch={setSearch} />
       <UserList search={search} />
+      <div className="block md:hidden absolute right-3 cursor-pointer top-5 z-30 text-white" onClick={() => setUserListItemDisplay(false)} >Close </div>
     </div>
   )
 }

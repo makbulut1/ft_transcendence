@@ -1,7 +1,7 @@
 import { Popover, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 
-interface SettingButtonDropDownProps {
+interface ISettingButtonDropDownProps {
   children: JSX.Element
   button: JSX.Element
   x?: 'left' | 'right'
@@ -16,7 +16,7 @@ interface SettingButtonDropDownProps {
  * @param y up | down
  */
 
-const Dropdown = ({ children, button, x, y }: SettingButtonDropDownProps) => {
+const Dropdown = ({ children, button, x, y }: ISettingButtonDropDownProps) => {
   return (
     <div>
       <Popover className="relative h-full w-full">

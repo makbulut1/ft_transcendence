@@ -11,7 +11,7 @@ interface IUserList {
 const UserList = ({ search }: IUserList) => {
   const [selectedCard, setSelectedCard] = useState<number | null>(null)
   const [userList, setUserList] = useState<IUser[]>([])
-  const [parent, enableAnimations] = useAutoAnimate(/* optional config */)
+  const [parent] = useAutoAnimate(/* optional config */)
 
   const onCardClick = (index: number) => {
     setSelectedCard(index)
@@ -22,7 +22,7 @@ const UserList = ({ search }: IUserList) => {
       try {
         const response = await fetch('api/users')
         const data = await response.json()
-        const filteredData = search !== undefined ?  data.filter((item: IUser) => item.name.toLowerCase().includes(search.toLowerCase())) : data
+        const filteredData = search === undefined ? data : data.filter((item: IUser) => item.fullName.toLowerCase().includes(search.toLowerCase()))
         setUserList(filteredData)
       } catch (error) {
         console.error(error)

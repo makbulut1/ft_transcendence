@@ -64,7 +64,7 @@ const UserCard = ({ selected, data }: IUserCard) => {
     >
       <div className="flex w-3/4 items-center gap-6">
         <PhotoComponent avatar={data?.avatar} />
-        <NameAndLastMessage name={data?.name}/>
+        <NameAndLastMessage name={data?.fullName}/>
       </div>
       <Notification />
     </div>
