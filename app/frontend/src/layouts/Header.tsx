@@ -54,16 +54,17 @@ const HeaderProfileDropdown = () => {
 
 const HeaderProfile = () => <HeaderProfileDropdown />
 
-function MenuButton({ children, path }: {children: React.ReactNode | React.ReactNode[], path: string}) {
+function MenuButton({ children, path, icon }: { children: React.ReactNode, path: string, icon: React.ReactNode }) {
   const router = useRouter()
   const { pathname } = router
 
   return (
     <Button
       onClick={() => router.push(path)}
-      className={`${pathname === path ? "shadow-blue-300" : "" } bg-transparent flex items-center justify-center gap-1 rounded-bl-3xl text-white rounded-se-3xl p-2 px-6 text-xl font-bold hover:brightness-125`}
+      className={`${pathname === path ? "shadow-blue-300" : "" } bg-transparent flex items-center justify-center gap-1 rounded-bl-3xl text-white rounded-se-3xl p-0 md:p-2 px-6 text-xl font-bold hover:brightness-125`}
     >
-      {children}
+      <div>{icon}</div>
+      <div className="hidden md:block">{children}</div>
     </Button>
   )
 }
@@ -72,7 +73,7 @@ function Menu() {
   return (
     <div className="absolute flex items-center justify-center gap-6">
       {MenuButtons.map((button: MenuButtonProps, index: number) => (
-        <MenuButton path={button.path} key={index}>{button.icon}{button.name}</MenuButton>))
+        <MenuButton path={button.path} icon={button.icon} key={index}>{button.name}</MenuButton>))
       }
     </div>
   )
@@ -87,7 +88,11 @@ const Header = () => {
   }, [authenticated])
 
   return (
-    <header className=" h-20 flex w-full items-center justify-center bg-gradient-to-r from-[#ad5389] to-[#3c1053] p-2 px-20 text-4xl font-extrabold text-white shadow-xl">
+    <header
+      className={
+        `absolute z-50 h-10 bottom-0 md:top-0 min-w-[375px] md:relative flex md:h-20 w-full items-center justify-center bg-gradient-to-r from-[#ad5389] to-[#3c1053] p-2 px-20 text-4xl font-extrabold text-white shadow-xl`
+      }
+    >
       <Menu />
       <div className="flex w-full justify-end">{userStore && <HeaderProfile />}</div>
     </header>
