@@ -2,16 +2,8 @@ import { faker } from '@faker-js/faker'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { useEffect } from 'react'
 
-import { ChatMessage, chatMessages } from '@/_Mock/chat/dummyChat'
+import { ChatMessage } from '@/_Mock/chat/dummyChat'
 import { MessageCard } from '@/modules/chat/modules/components'
-
-// const dummyMessages = [
-//   {
-//     id: 1,
-//     message: 'Hello, this is the first message for user1',
-//     position: 'end',
-//   },
-// ]
 
 /**
  * TODO Sonradan kullanilacak
@@ -32,7 +24,7 @@ interface MessageListProps {
  */
 
 const MessageList = ({ messages }: MessageListProps) => {
-  const [parent, enableAnimations] = useAutoAnimate(/* optional config */)
+  const [parent] = useAutoAnimate(/* optional config */)
 
   useEffect(() => {}, [])
 
@@ -50,10 +42,10 @@ const MessageList = ({ messages }: MessageListProps) => {
   }
 
   return (
-    <div className="h-full w-full">
+    <div className="h-[78vh] w-full">
       <ul
         ref={parent}
-        className='flex max-h-[50vh] w-full flex-col-reverse gap-2 overflow-y-scroll rounded-md bg-baklavaBlack-200 px-6 py-2 pt-14'
+        className='flex h-full w-full flex-col-reverse gap-2 overflow-y-scroll rounded-md bg-baklavaBlack-200 px-6 py-2 pt-14'
       >
         {messages &&
           messages.length > 0 &&

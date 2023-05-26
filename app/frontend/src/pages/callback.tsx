@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react'
 
 import { Layout } from '@/layouts'
 import { useStoreUser } from '@/store'
+import { IUser } from '@/types'
 
 const sendCode = async (code: string) => {
   const userData = await axios.post('http://localhost:3000/api/callbackBE', {
     code: code,
   })
-  console.log('userData', userData)
-  return userData.data
+  return userData.data as IUser
 }
 
 const CallbackPage = () => {

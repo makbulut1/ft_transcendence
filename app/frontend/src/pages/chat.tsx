@@ -3,7 +3,7 @@ import ChatBox from '@/modules/chat/ChatBox'
 
 const ChatPage = () => {
   return <Layout>
-    <div className="flex w-full justify-center p-20 "><ChatBox /></div>
+    <div className="flex w-full h-fit justify-center "><ChatBox /></div>
   </Layout>
 }
 

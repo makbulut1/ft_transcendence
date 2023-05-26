@@ -10,7 +10,7 @@ const buttonStyles = cva(
       intent: {
         secondary: 'bg-black text-white hover:brightness-150',
         danger: 'bg-red-600 text-white hover:brightness-110',
-        primary: 'bg-blue-600 text-white hover:brightness-110',
+        primary: 'bg-white text-black hover:brightness-110',
       },
       fullWidth: {
         true: 'w-full',

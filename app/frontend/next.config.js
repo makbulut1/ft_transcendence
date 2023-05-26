@@ -2,7 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['images.unsplash.com', 'res.cloudinary.com', 'cloudflare-ipfs.com'],
+    domains: [
+      'images.unsplash.com',
+      'res.cloudinary.com',
+      'cloudflare-ipfs.com',
+      'cdn.intra.42.fr',
+
+    ],
   },
   async redirects() {
     return [
@@ -11,7 +17,7 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
-    ];
+    ]
   },
 }
 
