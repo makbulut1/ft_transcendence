@@ -5,12 +5,12 @@ import { IUser } from '@/types'
 const getUsers = (n: number): IUser[] => {
   return [...Array(n)].map(() => ({
     id: faker.datatype.uuid(),
-    name: faker.name.fullName(),
+    fullName: faker.name.fullName(),
     email: faker.internet.email(),
     avatar: faker.image.avatar(),
-    created_at: faker.date.past(),
-    updated_at: null,
-    deleted_at: null,
+    createdAt: faker.date.past(),
+    updatedAt: null,
+    deletedAt: null,
     isDeleted: false,
   }))
 }

@@ -1,10 +1,11 @@
 export interface IUser {
   id: string;
-  name: string;
+  fullName: string;
   email: string;
+  login?: string;
   avatar: string;
-  created_at: Date;
-  updated_at: null | Date;
-  deleted_at: null | Date;
+  createdAt: Date;
+  updatedAt: null | Date;
+  deletedAt: null | Date;
   isDeleted: boolean;
 }

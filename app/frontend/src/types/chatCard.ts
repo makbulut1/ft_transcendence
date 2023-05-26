@@ -3,8 +3,8 @@ export interface IChatCard {
   user_id: string;
   group_id: string;
   message: string;
-  created_at: Date;
-  updated_at: Date;
-  deleted_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date;
   isDeleted: boolean;
 }

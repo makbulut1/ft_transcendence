@@ -1,9 +1,10 @@
 import { Layout } from '@/layouts'
+import { GameCard } from '@/modules/game'
 
 const GamePage = () => {
   return (
     <Layout>
-      <span className="text-white">Game</span>
+      <h1>Game</h1 >
     </Layout>
   )
 }

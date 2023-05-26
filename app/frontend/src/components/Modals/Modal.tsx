@@ -7,7 +7,7 @@ import React, { Fragment } from 'react'
  * @param children - children to render inside the modal
  * @param onClose - function to close the modal
  */
-type ModalProps = {
+type IModalProps = {
   show: boolean
   children: React.ReactNode
   onClose(): void
@@ -30,7 +30,7 @@ type ModalProps = {
  * }
  * ```
  */
-const Modal = ({ show, children, onClose }: ModalProps) => (
+const Modal = ({ show, children, onClose }: IModalProps) => (
   <Transition appear show={show} as={Fragment}>
     <Dialog as="div" className="relative z-10" onClose={onClose}>
       <Transition.Child
@@ -55,7 +55,7 @@ const Modal = ({ show, children, onClose }: ModalProps) => (
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-[#24203B] p-6 text-left align-middle shadow-xl transition-all">
               {children}
             </Dialog.Panel>
           </Transition.Child>

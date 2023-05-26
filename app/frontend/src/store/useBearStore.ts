@@ -1,20 +1,14 @@
 import { create, StateCreator } from 'zustand'
 import { persist, PersistOptions } from 'zustand/middleware'
 
-interface User {
-  id?: number;
-  token?: string;
-  fullName?: string;
-  email?: string;
-  login?: string;
-}
+import { IUser } from '@/types'
 
 
 type MyState = {
   token: string | undefined
   authenticated: boolean
-  user? : User
-  authenticate: (user: User) => Promise<void>
+  user? : IUser
+  authenticate: (user: IUser) => Promise<void>
   unauthenticate: () => Promise<void>
 }
 type MyPersist = (
@@ -27,7 +21,7 @@ const useStoreUser = create<MyState>(
     (set) => ({
       token: undefined,
       authenticated: false,
-      authenticate: async (user: User) => {
+      authenticate: async (user: IUser) => {
         set({ user })
         set({ authenticated: true })
       },

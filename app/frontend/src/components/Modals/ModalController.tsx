@@ -1,15 +1,15 @@
-import React, { ReactNode,useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 
-import { useModal } from '@/store/useModal';
+import { useModal } from '@/store/useModal'
 
 import { Modal } from './Modal'
 
-type ModalPortalProps = {
+interface IModalPortalProps {
   children: ReactNode
 }
 
-const ModalPortal = ({ children }: ModalPortalProps) => {
+const ModalPortal = ({ children }: IModalPortalProps) => {
   const [modalRoot, setModalRoot] = useState<HTMLElement | null>(null)
 
   useEffect(() => {
@@ -36,4 +36,4 @@ const ModalController = () => {
   )
 }
 
-export {ModalController}
+export { ModalController }
