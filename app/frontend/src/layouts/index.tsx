@@ -6,7 +6,7 @@ import { Header } from '@/layouts/Header'
 const Layout = ({children} : {children : React.ReactNode | React.ReactNode[]}) =>{
 
   return (
-    <div className="w-full h-[100vh] min-w-[375px] bg-baklavaBlack-300">
+    <div className="w-full h-[100vh] bg-baklavaBlack-300">
       <Header />
       {children}
       </div>
