@@ -50,9 +50,8 @@ const ChatBox = () => {
 
   return (
     <div className="relative flex rounded-xl w-full h-fit justify-center shadow-2xl bg-baklavaBlack-200 shadow-baklavaBlack-200" onClick={() => setUserListItemDisplay(false)}>
-      <div className={`w-[25rem] h-full   ${userListItemDisplay ? "absolute top-0 left-0 z-20" : "sticky hidden md:block"}`} onClick={e => {
+      <div className={`w-[23rem] h-full   ${userListItemDisplay ? "absolute top-0 left-0 z-20" : "sticky hidden md:block"}`} onClick={e => {
         e.stopPropagation()
-        console.log('qweqwe')
       }}>
         <UserListItem setUserListItemDisplay={setUserListItemDisplay} />
       </div>
