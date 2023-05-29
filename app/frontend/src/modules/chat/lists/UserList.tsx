@@ -9,13 +9,8 @@ interface IUserList {
 }
 
 const UserList = ({ search }: IUserList) => {
-  const [selectedCard, setSelectedCard] = useState<number | null>(null)
   const [userList, setUserList] = useState<IUser[]>([])
   const [parent] = useAutoAnimate(/* optional config */)
-
-  const onCardClick = (index: number) => {
-    setSelectedCard(index)
-  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,8 +29,8 @@ const UserList = ({ search }: IUserList) => {
   return (
     <ul ref={parent} className="flex flex-col items-center">
       {userList.map((item, index) => (
-        <li key={index} onClick={() => onCardClick(index)}>
-          <UserCard data={item} selected={selectedCard === index} />
+        <li key={index}>
+          <UserCard data={item} />
         </li>
       ))}
     </ul>
