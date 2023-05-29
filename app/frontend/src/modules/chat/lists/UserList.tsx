@@ -1,7 +1,7 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { useEffect, useState } from 'react'
 
-import { UserCard } from '@/modules/chat/modules/components'
+import { UserCard } from '@/modules/chat/modules/modules'
 import { IUser } from '@/types'
 
 interface IUserList {

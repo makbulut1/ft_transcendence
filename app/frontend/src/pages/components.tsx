@@ -1,6 +1,5 @@
 import { Header } from '@/layouts'
-import { UserListItem } from '@/modules/chat/modules'
-import { ChatWindowHeader, MessageCard, UserCard } from '@/modules/chat/modules/components'
+import {  MessageCard, UserCard } from '@/modules/chat/modules/modules'
 import { Button } from '@/ui/Button'
 
 const Page = () => {
@@ -23,7 +22,7 @@ const Page = () => {
   return (
     <div className="flex h-full w-full flex-col items-center bg-baklavaBlack-50 gap-10 p-10">
       <h1 className="text-xl text-white">Components</h1>
-      <div className="w-[50rem]"><ChatWindowHeader fullname={`ahmet mehmet`}/></div>
+      {/*<div className="w-[50rem]"><ChatWindowHeader fullname={`ahmet mehmet`}/></div>*/}
       <div className="w-[50rem] p-10 bg-baklavaBlack-200">
       </div>
       <div className="flex w-[50rem] flex-col gap-2 bg-baklavaBlack-200 p-4 rounded-md">
@@ -52,7 +51,7 @@ const Page = () => {
         <UserCard />
       </div>
       <div className="w-[30rem]">
-        <UserListItem />
+        {/*<UserListItem />*/}
       </div>
 
     </div>

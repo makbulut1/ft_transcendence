@@ -1,8 +1,8 @@
-import { useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 
 import { ChatMessage, chatMessages } from '@/_Mock/chat/dummyChat'
-import { UserListItem } from '@/modules/chat/modules'
-import { ChatWindowBody, ChatWindowFooter, ChatWindowHeader } from '@/modules/chat/modules/components'
+
+import { ChatBoxBody, ChatBoxLeftSide } from './modules'
 
 const ChatBox = () => {
   const [chatMessagesState, setChatMessagesState] = useState<ChatMessage[]>([])
@@ -16,20 +16,22 @@ const ChatBox = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setUserListItemDisplay(false);
-    };
+      setUserListItemDisplay(false)
+    }
 
     // Initial check
-    if (window.innerWidth > 1024){handleResize();}
+    if (window.innerWidth > 1024) {
+      handleResize()
+    }
 
     // Event listener for window resize
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize)
 
     // Clean up the event listener when the component is unmounted
     return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   const handleSendMessage = (message: string) => {
     chatMessages.push({
@@ -49,19 +51,26 @@ const ChatBox = () => {
   const fullname = 'Eren Akbulut'
 
   return (
-    <div className="relative flex rounded-xl w-full h-fit justify-center shadow-2xl bg-baklavaBlack-200 shadow-baklavaBlack-200" onClick={() => setUserListItemDisplay(false)}>
-      <div className={`w-[23rem] h-full   ${userListItemDisplay ? "absolute top-0 left-0 z-20" : "sticky hidden md:block"}`} onClick={e => {
-        e.stopPropagation()
-      }}>
-        <UserListItem setUserListItemDisplay={setUserListItemDisplay} />
+    <div
+      className="relative flex h-fit w-full justify-center rounded-xl bg-baklavaBlack-200 shadow-2xl shadow-baklavaBlack-200"
+      onClick={() => setUserListItemDisplay(false)}
+    >
+      <div
+        className={`h-full w-[25rem]   ${
+          userListItemDisplay ? 'absolute left-0 top-0 z-20' : 'sticky hidden md:block'
+        }`}
+        onClick={e => {
+          e.stopPropagation()
+        }}
+      >
+        <ChatBoxLeftSide setUserListItemDisplay={setUserListItemDisplay} />
       </div>
-      <div className="h-full  w-full max-w-[1280px] border-l-[0.1rem] border-gray-600 ">
-        <ChatWindowHeader fullname={fullname} setUserListItemDisplay={setUserListItemDisplay} />
-        <ChatWindowBody messages={chatMessagesState} />
-        <div className="px-2 pb-2">
-          <ChatWindowFooter sendMessage={handleSendMessage} />
-        </div>
-      </div>
+      <ChatBoxBody
+        fullname={fullname}
+        userListItemDisplay={setUserListItemDisplay}
+        messages={chatMessagesState}
+        sendMessage={handleSendMessage}
+      />
     </div>
   )
 }

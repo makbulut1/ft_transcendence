@@ -3,7 +3,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { useEffect } from 'react'
 
 import { ChatMessage } from '@/_Mock/chat/dummyChat'
-import { MessageCard } from '@/modules/chat/modules/components'
+import { MessageCard } from '@/modules/chat/modules/modules'
 
 /**
  * TODO Sonradan kullanilacak
