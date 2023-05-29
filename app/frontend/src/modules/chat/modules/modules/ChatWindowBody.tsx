@@ -1,14 +1,9 @@
-import { ChatMessage } from '@/_Mock/chat/dummyChat'
 import { MessageList } from '@/modules/chat/lists'
 
-interface MessageListProps {
-  messages: ChatMessage[],
-}
-
-const ChatWindowBody = ({messages} : MessageListProps) => {
+const ChatWindowBody = () => {
   return (
     <>
-      <MessageList messages={messages} />
+      <MessageList />
     </>
   )
 }

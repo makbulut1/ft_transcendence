@@ -1,9 +1,10 @@
 import { faker } from '@faker-js/faker'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { useEffect } from 'react'
+import {useEffect, useState} from 'react'
 
 import { ChatMessage } from '@/_Mock/chat/dummyChat'
 import { MessageCard } from '@/modules/chat/modules/modules'
+import useChatStore from "@/store/useChatStore";
 
 /**
  * TODO Sonradan kullanilacak
@@ -13,9 +14,6 @@ import { MessageCard } from '@/modules/chat/modules/modules'
 const diffDate = (date1: Date, date2: Date) => {
   return date1.getTime() - date2.getTime()
 }
-interface MessageListProps {
-  messages: ChatMessage[],
-}
 
 /**
  * Data zaten reverse olarak gelecek o yuzden bu tarz islemlere gerek yok
@@ -23,10 +21,15 @@ interface MessageListProps {
  * @constructor
  */
 
-const MessageList = ({ messages }: MessageListProps) => {
+const MessageList = () => {
   const [parent] = useAutoAnimate(/* optional config */)
+  const [reverseArray, setReverseArray] = useState<ChatMessage[]>([])
+  const {messages} = useChatStore()
 
-  useEffect(() => {}, [])
+
+  useEffect(() => {
+    setReverseArray(messages)
+  }, [messages])
 
   const userMe = {
     id: 1,
@@ -47,9 +50,9 @@ const MessageList = ({ messages }: MessageListProps) => {
         ref={parent}
         className='flex h-full w-full flex-col-reverse gap-2 overflow-y-scroll rounded-md bg-baklavaBlack-200 px-6 py-2 pt-14'
       >
-        {messages &&
-          messages.length > 0 &&
-          messages.map((item: ChatMessage, index, array) => (
+        {reverseArray &&
+          reverseArray.length > 0 &&
+          reverseArray.map((item: ChatMessage, index, array) => (
             <li key={item.id}>
               <MessageCard
                 firstMessage={

@@ -2,27 +2,38 @@ import { faker } from '@faker-js/faker'
 import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
+import {chatMessages} from "@/_Mock/chat/dummyChat";
+import useChatStore from "@/store/useChatStore";
 import { ProfilePhoto } from '@/ui/ProfilePhoto'
 
 interface Inputs {
   message: string
 }
 
-interface ChatWindowFooterProps {
-  sendMessage: (message: string) => void,
-}
-
-const ChatWindowFooter = ({ sendMessage }: ChatWindowFooterProps) => {
+const ChatWindowFooter = () => {
   const {
     register,
     handleSubmit,
     reset
   } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = data => {
-    sendMessage(data.message)
+    handleSendMessage(data.message)
     reset()
   }
 
+  const {addMessage, selectedUserId} = useChatStore()
+
+  const handleSendMessage = (message: string) => {
+    addMessage({
+      id: chatMessages.length + 1,
+      senderId: 1,
+      receiverId: 2,
+      message: message,
+      timestamp: new Date(),
+      isRead: false,
+      isDeleted: false,
+    }, selectedUserId)
+  }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="w-full h-fit">

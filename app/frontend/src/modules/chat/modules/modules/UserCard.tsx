@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
+import useChatStore from "@/store/useChatStore";
 import { IUser } from '@/types'
 import { ProfilePhoto } from '@/ui/ProfilePhoto'
 
@@ -56,10 +56,14 @@ interface IUserCard {
   data?: IUser
 }
 
-const UserCard = ({ selected, data }: IUserCard) => {
+const UserCard = ({ data }: IUserCard) => {
+
+  const { setSelectedUserId, selectedUserId } = useChatStore()
+
   return (
     <div
-      className={`flex w-full items-center justify-between gap-4 rounded-2xl ${!selected ? "bg-[#151618]" : "bg-[#1F2022]"} p-4 text-white duration-200 hover:bg-[#1F2022] 
+      onClick={() => setSelectedUserId(data?.id ?? '0')}
+      className={`flex w-full items-center justify-between gap-4  ${selectedUserId === data?.id ? "bg-[#1F2022]" : "bg-[#151618]"} p-4 text-white duration-200 hover:bg-[#1F2022] 
         active:brightness-110 cursor-pointer`}
     >
       <div className="flex w-3/4 items-center gap-6">
