@@ -15,7 +15,7 @@ export class AuthenticationService {
             const   isMatch = pass === user.password;
             if (user && isMatch){
                 const{ password: _, ...userWithoutPassword } = user;
-                return 
+                return userWithoutPassword
             }
         }catch (e){
             return null;

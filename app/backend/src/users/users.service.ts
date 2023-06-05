@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { string } from 'joi';
 import { authenticator } from 'otplib';
-import { authenticate } from 'passport';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -26,8 +24,8 @@ export class UsersService {
         }
     ];
 
-    async   findOne(username: string): Promise<User | undefined>{
-        return this.users.find(user => user.username == username);
+    async   findOne(email: string): Promise<User | undefined>{
+        return this.users.find(user => user.email == email);
     }
 
 
