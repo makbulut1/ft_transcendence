@@ -5,7 +5,7 @@ import { ExtractJwt } from "passport-jwt";
 import { UsersService } from "src/users/users.service";
 
 @Injectable()
-export class Jwt2faAuthGuard extends PassportStrategy(Strategy) {
+export class Jwt2faStrategy extends PassportStrategy(Strategy) {
     constructor(private readonly userService: UsersService){
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

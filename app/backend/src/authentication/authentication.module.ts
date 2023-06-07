@@ -4,8 +4,8 @@ import { AuthenticationService } from './authentication.service';
 import { AuthenticationController } from './authentication.controller';
 import { LocalStrategy } from './local/local.strategy';
 import { UsersModule } from 'src/users/users.module';
-import {JwtAuthGuard} from './jwt/jwt-auth.guard';
-import {Jwt2faAuthGuard} from './jwt-2fa/jwt-2fa-auth.guard';
+import { JwtStrategy } from './jwt/jwt.strategy';
+import { Jwt2faStrategy } from './jwt-2fa/jwt-2fa.strategy';
 
 @Module({
   imports:[UsersModule, JwtModule.register({
@@ -13,6 +13,6 @@ import {Jwt2faAuthGuard} from './jwt-2fa/jwt-2fa-auth.guard';
     signOptions: { expiresIn: '1d' },
   })],
   controllers: [AuthenticationController],
-  providers: [AuthenticationService, LocalStrategy, JwtAuthGuard, Jwt2faAuthGuard]
+  providers: [AuthenticationService, LocalStrategy, JwtStrategy, Jwt2faStrategy]
 })
 export class AuthenticationModule {}
