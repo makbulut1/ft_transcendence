@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { authenticator } from 'otplib';
 import { User } from 'src/users/entities/user.entity';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from './../users/users.service';
 import { toDataURL } from 'qrcode';
 
 @Injectable()
@@ -36,7 +36,7 @@ export class AuthenticationService {
     async   generateTwoFactorAuthenticationSecret(user: User){
         const   secret = authenticator.generateSecret();
 
-        const   otpAuthUrl = authenticator.keyuri(user.email, 'AUTH_APP_NAME', secret);
+        const   otpAuthUrl = authenticator.keyuri(user.email, 'TRANSCENDENCE_PONG', secret);
 
         await this.usersService.setTwoFactorAuthenticationSecret(secret, user.userId);
 

@@ -1,6 +1,6 @@
 import { Controller, HttpCode, Post, UseGuards, Request, Req, Body, UnauthorizedException, Response } from '@nestjs/common';
 import { User } from 'src/users/entities/user.entity';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from './../users/users.service';
 import { AuthenticationService } from './authentication.service';
 import { JwtAuthGuard } from './jwt/jwt-auth.guard';
 import { LocalAuthGuard } from './local/local-auth.guard';
@@ -21,19 +21,19 @@ export class AuthenticationController {
   @Post('2fa/generate')
 	@UseGuards(JwtAuthGuard)
 	async register(@Response() response, @Request() request) {
-	  const { otpAuthUrl } = await this.authenticationService.generateTwoFactorAuthenticationSecret(
-		  request.user,
-		);
-  
-	  return response.json(
-		await this.authenticationService.generateQrCodeDataUrl(otpAuthUrl),
+    const { otpAuthUrl } = await this.authenticationService.generateTwoFactorAuthenticationSecret(
+          request.user,
+    );
+
+    return response.json(
+    await this.authenticationService.generateQrCodeDataUrl(otpAuthUrl),
 	  );
 	}
 
   @Post('2fa/turn-on')
   @UseGuards(JwtAuthGuard)
   async turnOnTwoFactorAuthentication(@Req() request, @Body() body) {
-    const isCodeValid = this.authenticationService.isTwoFactorAuthenticationCodeValid(
+      const isCodeValid = this.authenticationService.isTwoFactorAuthenticationCodeValid(
         body.twoFactorAuthenticationCode,
         request.user
       );
@@ -41,7 +41,8 @@ export class AuthenticationController {
       if (!isCodeValid){
         throw new UnauthorizedException('Wrong authentication code');
       }
-      await this.usersService.turnOnTwoFactorAuthentication(request.user.id);
+      await this.usersService.turnOnTwoFactorAuthentication(request.user.userId);
+      return ({validate: true})
   }
 
   @Post('2fa/authenticate')
@@ -52,7 +53,7 @@ export class AuthenticationController {
       body.twoFactorAuthenticationCode,
       request.user
     );
-
+    
     if (!isCodeValid){
       throw new UnauthorizedException('Wrong authentication code');
     }
