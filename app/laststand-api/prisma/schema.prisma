@@ -1,0 +1,170 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+enum MemberType {
+    admin
+    owner
+    member
+}
+
+enum ChannelType {
+    public
+    private
+    protected
+}
+
+enum AchievementType {
+    first_blood
+}
+
+model MatchHistory {
+    id           BigInt @id @default(autoincrement())
+    player1Name  String @map("player1_name") @db.VarChar(30)
+    player2Name  String @map("player2_name") @db.VarChar(30)
+    player1Score Int    @map("player1_score")
+    player2Score Int    @map("player2_score")
+
+    player1 User @relation("p1", fields: [player1Name], references: [name], onUpdate: Cascade, onDelete: Cascade)
+    player2 User @relation("p2", fields: [player2Name], references: [name], onUpdate: Cascade, onDelete: Cascade)
+}
+
+model User {
+    name                String  @id @db.VarChar(30)
+    intraId             String  @unique @map("intra_id") @db.VarChar(30)
+    avatar              String
+    twoFactorAuthSecret String? @map("two_factor_auth_enabled")
+    wins                Int     @default(0)
+    losses              Int     @default(0)
+
+    messages         Message[]
+    participants     Participant[]
+    channelMembers   ChannelMember[]
+    achievements     Achievement[]
+    matchHistoriesP1 MatchHistory[]  @relation("p1")
+    matchHistoriesP2 MatchHistory[]  @relation("p2")
+
+    friends  Friend[] @relation("friends")
+    friendBy Friend[] @relation("friendBy")
+
+    blockedUsers BlockedUser[] @relation("blockedUsers")
+    blockedBy    BlockedUser[] @relation("blockedBy")
+
+    invites     ChannelInvite[] @relation("invites")
+    sentInvites ChannelInvite[] @relation("sentInvites")
+
+    @@map("users")
+}
+
+model Achievement {
+    id       BigInt          @id @default(autoincrement())
+    userName String          @map("user_name") @db.VarChar(30)
+    type     AchievementType
+
+    user User @relation(fields: [userName], references: [name], onUpdate: Cascade, onDelete: Cascade)
+
+    @@map("achievements")
+}
+
+model Conversation {
+    id BigInt @id @default(autoincrement())
+
+    messages     Message[]
+    participants Participant[]
+    channel      Channel?
+
+    @@map("conversations")
+}
+
+model Message {
+    id             BigInt   @id @default(autoincrement())
+    conversationId BigInt   @map("conversation_id")
+    content        String
+    sentDate       DateTime @map("sent_date") @db.Timestamp(1)
+    ownerName      String   @map("owner_name") @db.VarChar(30)
+
+    conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+    owner        User         @relation(fields: [ownerName], references: [name], onUpdate: Cascade, onDelete: Cascade)
+
+    @@map("messages")
+}
+
+model Participant {
+    id             BigInt @id @default(autoincrement())
+    userName       String @map("user_name") @db.VarChar(30)
+    conversationId BigInt @map("conversation_id")
+
+    user         User         @relation(fields: [userName], references: [name], onUpdate: Cascade, onDelete: Cascade)
+    conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+    @@map("participants")
+}
+
+model Channel {
+    name           String      @id @db.VarChar(30)
+    conversationId BigInt      @unique @map("conversation_id")
+    type           ChannelType
+    password       String?
+
+    conversation   Conversation    @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+    channelMembers ChannelMember[]
+    invitings      ChannelInvite[]
+
+    @@map("channels")
+}
+
+model ChannelMember {
+    id          BigInt     @id @default(autoincrement())
+    userName    String     @map("user_name") @db.VarChar(30)
+    channelName String     @map("channel_name") @db.VarChar(30)
+    type        MemberType @default(member)
+    banned      Boolean    @default(false)
+    muteStart   DateTime?  @map("mute_start") @db.Timestamp(1)
+    muteEnd     DateTime?  @map("mute_end") @db.Timestamp(1)
+
+    user    User    @relation(fields: [userName], references: [name], onUpdate: Cascade, onDelete: Cascade)
+    channel Channel @relation(fields: [channelName], references: [name], onUpdate: Cascade, onDelete: Cascade)
+
+    @@map("channel_members")
+}
+
+model BlockedUser {
+    blockedUserName   String @map("blocked_user_name") @db.VarChar(30)
+    blockedByUserName String @map("blocked_by_user_name") @db.VarChar(30)
+
+    blockedUser User @relation("blockedBy", fields: [blockedUserName], references: [name], onUpdate: Cascade, onDelete: Cascade)
+    blockedBy   User @relation("blockedUsers", fields: [blockedByUserName], references: [name], onUpdate: Cascade, onDelete: Cascade)
+
+    @@id([blockedUserName, blockedByUserName])
+    @@map("blocked_users")
+}
+
+model Friend {
+    userName   String  @map("user_name") @db.VarChar(30)
+    friendName String  @map("friend_name") @db.VarChar(30)
+    approved   Boolean @default(false) @db.Boolean
+
+    user   User @relation("friends", fields: [userName], references: [name], onDelete: Cascade, onUpdate: Cascade)
+    friend User @relation("friendBy", fields: [friendName], references: [name], onDelete: Cascade, onUpdate: Cascade)
+
+    @@id([userName, friendName])
+    @@map("friends")
+}
+
+model ChannelInvite {
+    userName      String @map("user_name") @db.VarChar(30)
+    invitedByName String @map("invited_by_name") @db.VarChar(30)
+    channelName   String @map("channel_name") @db.VarChar(30)
+
+    user      User    @relation("invites", fields: [userName], references: [name], onDelete: Cascade, onUpdate: Cascade)
+    invitedBy User    @relation("sentInvites", fields: [invitedByName], references: [name], onDelete: Cascade, onUpdate: Cascade)
+    channel   Channel @relation(fields: [channelName], references: [name], onDelete: Cascade, onUpdate: Cascade)
+
+    @@id([userName, channelName])
+    @@map("channel_invites")
+}

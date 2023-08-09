@@ -1,5 +1,0 @@
-export * from './ChatWindowBody'
-export * from './ChatWindowFooter'
-export * from './ChatWindowHeader'
-export * from './MessageCard'
-export * from './UserCard'

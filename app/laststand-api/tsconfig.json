@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"declaration": true,
+		"removeComments": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"target": "es2017",
+		"sourceMap": true,
+		"outDir": "./dist",
+		"baseUrl": "./src",
+		"incremental": true,
+		"skipLibCheck": true,
+		"strictNullChecks": false,
+		"noImplicitAny": false,
+		"strictBindCallApply": false,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"forceConsistentCasingInFileNames": false,
+		"noFallthroughCasesInSwitch": false,
+		"paths": {
+			"@/*": ["*"],
+			"@shared/*": ["../../laststand-shared/*"]
+		}
+	}
+}
