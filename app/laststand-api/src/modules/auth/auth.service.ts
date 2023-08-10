@@ -34,15 +34,18 @@ export class AuthService {
 			token: jwt.sign({ username: user.name }, process.env.JWT_SECRET),
 		};
 
-		const twoFactorAuthEnabled = !!(await this.userService.get2FaSecret(user.name));
-		if (twoFactorAuthEnabled) {
+		const twoFactorAuthSecret = await this.userService.get2FaSecret(user.name);
+		if (twoFactorAuthSecret) {
 			if (twoFactorAuthCode) {
 				const codeVerified = authenticator.verify({
 					token: twoFactorAuthCode,
-					secret: await this.userService.get2FaSecret(user.name),
+					secret: twoFactorAuthSecret,
 				});
 
 				if (!codeVerified) {
+					this.logger.error(
+						`Code ${twoFactorAuthCode} invalid for user ${jwtUser.username}`,
+					);
 					throw WRONG_2FA_CODE();
 				}
 				return [jwtUser, newUser];

@@ -19,6 +19,12 @@ export class ActivityService {
 		this.listeners.forEach((x) => x(username, status));
 	}
 
+	updateName(oldName: string, newName: string) {
+		const stat = this.users[oldName];
+		this.users.delete(oldName);
+		this.users[newName] = stat;
+	}
+
 	getActivity(username: string): Status {
 		return this.users[username];
 	}

@@ -803,7 +803,7 @@ export class ChannelService {
 			},
 			data: {
 				type,
-				password,
+				password: sha256(password),
 			},
 			select: {
 				name: true,

@@ -315,7 +315,7 @@ export class ChatService {
 
 	async canChat(username: string, otherUsername: string): Promise<boolean> {
 		return !(
-			(await this.userService.isBlocked(username, otherUsername)) &&
+			(await this.userService.isBlocked(username, otherUsername)) ||
 			(await this.userService.isBlocked(otherUsername, username))
 		);
 	}

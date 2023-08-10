@@ -1,7 +1,10 @@
 DOCKER = sudo docker
-COMPOSE = $(DOCKER) compose -p baklava-pong -f app/docker-compose.yml
+COMPOSE = $(DOCKER)-compose -p laststand -f app/docker-compose.yml
 
 all: detach
+
+generate:
+	 ./generate.sh
 
 ps:
 	$(COMPOSE) ps
@@ -43,4 +46,4 @@ prune: down fclean
 
 re: fclean all
 
-.PHONY: all ps images volumes networks start stop restart up down clean fclean prune re
+.PHONY: all ps images volumes networks start stop restart up down clean fclean prune re generate

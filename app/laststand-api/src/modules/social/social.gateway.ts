@@ -659,6 +659,7 @@ export class SocialGateway implements OnGatewayDisconnect {
 				socket.join(user.name);
 				token = newToken;
 			}
+			this.activityService.updateName(oldUser.name, user.name);
 			socket.emit(USER_EDITED, {
 				oldUser,
 				newUser: user,

@@ -24,7 +24,7 @@ export interface EditChannelModalProps extends Omit<BaseModalProps, "children"> 
 export function useViewModel(props: EditChannelModalProps) {
 	const schema = yup.object().shape({
 		type: yup.mixed().oneOf(["public", "protected", "private"]),
-		password: yup.string().nullable().default(undefined),
+		password: yup.string().nullable().default(''),
 	});
 
 	const [isProcessing, setIsProcessing] = useState<boolean>(false);
@@ -65,7 +65,6 @@ export function useViewModel(props: EditChannelModalProps) {
 	// UI events
 	const handleSubmitClick = form.handleSubmit(async (values) => {
 		setIsProcessing(true);
-
 		social.emit(CHANNEL_EDIT, {
 			channelName,
 			...values,
@@ -86,13 +85,13 @@ export function useViewModel(props: EditChannelModalProps) {
 	useSocketEvent(social, WENT_WRONG, wentWrong);
 	useSocketEvent(social, EDITED_CHANNEL, editedChannel, [channelName]);
 
-	useEffect(() => {
+	/* useEffect(() => {
 		if (channelType == "protected") {
 			form.register("password");
 		} else {
 			form.unregister("password");
 		}
-	}, [channelType, form.register, form.unregister]);
+	}, [channelType, form.register, form.unregister]); */
 
 	useEffect(() => {
 		loadChannel();

@@ -5,7 +5,6 @@ import { LSError } from "@shared/types";
 import { AxiosError } from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { toast } from "react-toastify";
 
 export function useViewModel() {
 	const [searchParams] = useSearchParams();
@@ -27,6 +26,7 @@ export function useViewModel() {
 
 		auth.beginLogging();
 		try {
+			console.log('T2A Code:', tfaCode);
 			const [user, firstLogin] = await login(code, tfaCode);
 			if (user.twoFactorAuthEnabled) {
 				setTfaEnabled(true);
@@ -36,16 +36,11 @@ export function useViewModel() {
 			localStorage.setItem("firstLogin", firstLogin ? "true" : "false");
 		} catch (err) {
 			if (err instanceof AxiosError) {
-				toast.error(err.response?.data.message);
-				console.error("Login.API error:", err.response?.data);
-
 				const info = err.response?.data as LSError;
 				if (info?.code == ERR_AUTH_ERROR) {
 					auth.logout(); // Be sure username and token reset.
 					navigate("/", { replace: true });
 				}
-			} else {
-				console.error("Login.API error:", err);
 			}
 		} finally {
 			auth.endLogging();

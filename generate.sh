@@ -55,7 +55,7 @@ echo -n "Host port: "
 read VITE_HOST_PORT
 
 
-cat << EOF > .env
+cat << EOF > app/.env
 VITE_HOST_PORT=$VITE_HOST_PORT
 
 # Environment
@@ -80,12 +80,13 @@ INVITE_JWT_SECRET=$INVITE_JWT_SECRET
 EOF
 echo ".env created for backend and docker-compose"
 
-cat << EOF > laststand/.env
+cat << EOF > app/laststand/.env
 VITE_API_PORT=$VITE_API_PORT
 VITE_HOST_PORT=$VITE_HOST_PORT
 VITE_SOCKET_PORT=$VITE_SOCKET_PORT
 VITE_API_HOST=$VITE_API_HOST
 VITE_HOST=$VITE_HOST
+VITE_INTRA_UID=$INTRA_UID
 EOF
 
 echo ".env created for frontend"

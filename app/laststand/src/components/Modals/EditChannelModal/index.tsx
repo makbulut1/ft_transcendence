@@ -41,8 +41,7 @@ export function EditChannelModal(props: EditChannelModalProps) {
 						</InputRadioGroup>
 					</div>
 
-					{viewModel.channelType == "protected" && (
-						<div>
+						<div className={`${viewModel.channelType == 'protected' ? 'block' : 'hidden'}`}>
 							<div className="mb-2">New password:</div>
 							<InputTextField
 								disabled={viewModel.isProcessing}
@@ -50,7 +49,6 @@ export function EditChannelModal(props: EditChannelModalProps) {
 								name="password"
 							/>
 						</div>
-					)}
 
 					<button
 						disabled={viewModel.isProcessing}

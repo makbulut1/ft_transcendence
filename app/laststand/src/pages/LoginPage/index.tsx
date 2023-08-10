@@ -45,11 +45,10 @@ export function LoginPage() {
 				</div>
 				<a
 					href={`https://api.intra.42.fr/oauth/authorize?${new URLSearchParams({
-						client_id:
-							"u-s4t2ud-ff4bcf45ad8732dae4031ff9fc8eb0e164c64a82b8ef08fd22e4cd75ec34897c",
+						client_id: import.meta.env.VITE_INTRA_UID,
 						redirect_uri: `http://${import.meta.env.VITE_HOST}:${
 							import.meta.env.VITE_HOST_PORT
-						}/`,
+						}`,
 						response_type: "code",
 					}).toString()}`}
 				>
