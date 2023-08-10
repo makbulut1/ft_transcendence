@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.clickable {
+		@apply transition-all duration-300 hover:cursor-pointer hover:translate-y-[-3px];
+	}
+}
+
+button {
+	@apply p-3 transition-all duration-200 rounded-lg hover:cursor-pointer shadow-sm flex items-center justify-center disabled:hover:cursor-default;
+}
+
+* {
+	user-select: none;
+}
+
+body {
+	overflow-y: hidden;
+}

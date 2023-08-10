@@ -1,33 +1,50 @@
-version: '3.9'
-
+version: "3.8"
 services:
-  backend:
-    container_name: nest-app
-    build: 
-      context: ./backend
-      dockerfile: Dockerfile
+  laststand:
+    image: ft/laststand
+    container_name: laststand
     restart: always
-    ports:
-      - "8000:3000"
-
-  frontend:
-    container_name: next-app
-    build: 
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "80:3000"
-
-  postgre:
+    ports: 
+      - "${VITE_HOST_PORT}:${VITE_HOST_PORT}"
+    build:
+      context: ./
+      dockerfile: laststand/Dockerfile
+  laststand-api:
+    env_file:
+      - ./.env
+    image: ft/laststand-api
+    container_name: laststand-api
+    restart: always
+    networks:
+      - db-be
+    ports: 
+      - "${API_PORT}:${API_PORT}"
+      - "${SOCKET_PORT}:${SOCKET_PORT}"
+    build:
+      context: ./
+      dockerfile: laststand-api/Dockerfile
+    depends_on:
+      - laststand-db
+  laststand-db:
     image: postgres
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: password
-    ports:
+    container_name: laststand-db
+    networks:
+      - db-be
+    restart: always
+    ports: 
       - "5432:5432"
+    environment:
+      POSTGRES_USER: "${PG_USER}"
+      POSTGRES_PASSWORD: "${PG_PASS}"
     volumes:
-      - "postgre_volume:/var/lib/postgresql"
+      - local_pgdata:/var/lib/postgresql/data
 
+networks:
+  fe-be:
+    driver: bridge
+  db-be:
+    driver: bridge
+  
 volumes:
-  postgre_volume:
-    driver: local
+  local_pgdata:
+  pgadmin-data:
